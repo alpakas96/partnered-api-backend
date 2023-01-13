@@ -1,0 +1,34 @@
+{
+  "name": "express-harry-potter-api",
+  "version": "1.0.0",
+  "description": "[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "db:seed": "node seed/data.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.generalassemb.ly/alpakas96/partnered-api-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongo": "^0.1.0",
+    "mongoose": "^6.8.0",
+    "morgan": "^1.10.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
