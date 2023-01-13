@@ -9,8 +9,8 @@ app.listen(port, () => console.log(`app listening on port ${port}`))
 
 
 //this configures the app to parse any incoming json data if needed
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json());
 
 //this is the root route 
 // make it redirect to the houses route:
