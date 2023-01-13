@@ -1,5 +1,5 @@
 import express from 'express'
-import House from '../models/Houses.js'
+import House from './models/Houses.js'
 
 const app = express()
 
