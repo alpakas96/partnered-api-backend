@@ -1,11 +1,14 @@
 import express from 'express'
 import House from './models/Houses.js'
+import db from "./lib/connections.js";
 
 const app = express()
 
 const port = process.env.PORT || 3000
 
-app.listen(port, () => console.log(`app listening on port ${port}`))
+db.on("connected", () => {
+    app.listen(port, () => console.log(`app listening on port ${port}`))
+})
 
 
 //this configures the app to parse any incoming json data if needed
