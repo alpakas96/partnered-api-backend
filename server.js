@@ -1,8 +1,11 @@
 import express from 'express'
+import cors from "cors"
 import House from './models/Houses.js'
 import db from "./lib/connections.js";
 
 const app = express()
+
+app.use(cors())
 
 const port = process.env.PORT || 3000
 
