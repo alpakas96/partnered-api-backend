@@ -2,6 +2,7 @@ import express from 'express'
 import cors from "cors"
 import House from './models/Houses.js'
 import db from "./lib/connections.js";
+import Characters from './models/Characters.js';
 
 const app = express()
 
@@ -30,10 +31,10 @@ app.get('/houses', async (req, res) => {
     res.json(houses)
 })
 
-// A house detail route (`'/house/5a05e2b252f721a3cf2ea33f'`) that returns the document for the house in the url parameter
-app.get('/houses/:id', async (req, res) => {
-    const houseDetail = await House.findOne({_id: req.params.id})
-    res.json(houseDetail)
+//this is the members route
+app.get('/houses/members', async (req, res) => {
+    const members = await Characters.find({})
+    res.json(members)
 })
 
 // A house create route ('/house') that a user could send a POST request to in order to create a new house:
@@ -42,4 +43,16 @@ app.post('/house', async (req, res) => {
     await newHouse.save();
     res.json(newHouse);
 });
+
+// A house detail route (`'/house/5a05e2b252f721a3cf2ea33f'`) that returns the document for the house in the url parameter
+app.get('/houses/:id', async (req, res) => {
+    const houseDetail = await House.findOne({_id: req.params.id})
+    res.json(houseDetail)
+})
+
+//a character detail route that returns the document for the member in the url parameter
+app.get('/houses/members/:id', async (req, res) => {
+    const memberDetail = await Characters.findOne({_id: req.params.id})
+    res.json(memberDetail)
+})
 
