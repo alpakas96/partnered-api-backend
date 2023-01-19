@@ -2,10 +2,14 @@ import express from 'express'
 import cors from "cors"
 import House from './models/Houses.js'
 import db from "./lib/connections.js";
+import logger from "morgan";
 import Characters from './models/Characters.js';
+// import Houses from './models/Houses.js';
 
 const app = express()
 
+app.use(express.json())
+app.use(logger("dev"))
 app.use(cors())
 
 const port = process.env.PORT || 3000
@@ -38,7 +42,7 @@ app.get('/houses/members', async (req, res) => {
 })
 
 // A house create route ('/house') that a user could send a POST request to in order to create a new house:
-app.post('/house', async (req, res) => {
+app.post('/houses', async (req, res) => {
     const newHouse = new House(req.body);
     await newHouse.save();
     res.json(newHouse);
@@ -55,4 +59,36 @@ app.get('/houses/members/:id', async (req, res) => {
     const memberDetail = await Characters.findOne({_id: req.params.id})
     res.json(memberDetail)
 })
+ 
+// post for characters 
+app.post('/houses/members', async (req, res) => {
+    const newMember = new Characters(req.body);
+    await newMember.save();
+    res.json(newMember);
+});
 
+// put for characters 
+app.put('/houses/members/:id', async (req, res) => {
+    let response = await Characters.findByIdAndUpdate(req.params.id, req.body)
+    res.json(response)
+})
+
+//delete for characters 
+
+app.delete('/houses/members/:id', async (req, res) => {
+    const deleteMember = await Characters.findOneAndRemove({_id: req.params.id})
+    res.json(deleteMember)
+})
+
+// delete for houses 
+app.delete('/houses/:id', async (req, res) => {
+    const deleteHouses = await House.findOneAndRemove({_id: req.params.id})
+    res.json(deleteHouses)
+})
+
+
+// put for houses 
+app.put('/houses/:id', async (req, res) => {
+    const putHouses = await House.findByIdAndUpdate(req.params.id, req.body)
+    res.json(putHouses)
+})
